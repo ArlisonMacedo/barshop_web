@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Dropzone from '../../components/Dropzone'
 import TextArea from '../../components/TeaxtArea'
 import api from '../../services/api'
@@ -13,7 +13,7 @@ import './styles.css'
 const CreateProduct = () => {
 
   
-
+  const history = useHistory()
   const [formData, setFormData] = useState({
     name: '',
     price: '',
@@ -55,7 +55,7 @@ const CreateProduct = () => {
     await api.post('product', data)
 
     alert('Produto Cadastrado com Sucesso!')
-    window.location.reload()
+    history.push('/')
 
 
     // const response = await api.get('product')
