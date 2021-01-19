@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Dropzone from '../../components/Dropzone'
 import TextArea from '../../components/TeaxtArea'
 import api from '../../services/api'
@@ -9,9 +9,10 @@ import api from '../../services/api'
 import logo from '../../assets/logo.png'
 import './styles.css'
 
+
 const CreateProduct = () => {
 
-  const history = useHistory()
+  
 
   const [formData, setFormData] = useState({
     name: '',
@@ -33,9 +34,10 @@ const CreateProduct = () => {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
+
     const data = new FormData()
 
-    const { name, price,category, address, number, whatsapp } = formData
+    const { name, price, category, address, number, whatsapp } = formData
 
 
     data.append('name', name)
@@ -53,8 +55,8 @@ const CreateProduct = () => {
     await api.post('product', data)
 
     alert('Produto Cadastrado com Sucesso!')
+    window.location.reload()
 
-    history.replace('/cadastro')
 
     // const response = await api.get('product')
 
@@ -102,8 +104,6 @@ const CreateProduct = () => {
                 type="number"
                 name="price"
                 step="0.01"
-
-                // value="0"
                 id="price"
                 onChange={handleInputChange}
               />
@@ -162,7 +162,7 @@ const CreateProduct = () => {
 
           <footer>
             <p>
-             <strong> Importante! <br />
+              <strong> Importante! <br />
               preencha todos os dados</strong>
               <button type="submit"> cadastrar produto</button>
             </p>
